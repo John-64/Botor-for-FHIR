@@ -2,8 +2,6 @@
 There is a repository for my chat-bot project. The application, wrote in Python, answer to a human question using the FHIR resources taked from a [HAPI FHIR Test Server](https://hapi.fhir.org/).
 
 ## Instruction 📖
-Install:
-- VsCode
 
 ### Mac OS
 Work in progress...
