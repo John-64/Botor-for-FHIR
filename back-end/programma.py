@@ -1,20 +1,23 @@
-"""
+from langchain.prompts import PromptTemplate
 from llama_cpp import Llama
+from langchain.callbacks.manager import CallbackManager
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
-llm = Llama(
-    model_path="/Users/gianni/Desktop/Frontend/model/mistral-7b-v0.1.Q6_K.gguf",
-    temperature=0.75,
-    max_tokens=2000,
-    top_p=1,
-    verbose=True,
-)
+PATH='/Users/gianni/Progetti/LLM Models/wizard-vicuna-13b.Q3_K_S.gguf'
 
-response = llm("Year of twin towers attack?")
+callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
 
-print(response) 
-"""
-from langchain.llms import CTransformers
+llm = Llama(model_path=PATH, verbose=True, temperature=0.75, max_tokens=2000, callback_manager=callback_manager)
 
-llm = CTransformers(model='./model/wizard-vicuna-13b.Q3_K_S.gguf', model_type='mistral')
+prompt = PromptTemplate(
+    input_variables=['input'],
+    template="""
+    ### Input:
+    {input}
+    """)
 
-print(llm('AI is going to'))
+formatted_prompt = prompt.format(input="Question: A rap battle between Stephen Colbert and John Oliver")
+
+response = llm(formatted_prompt)
+
+print(response)
