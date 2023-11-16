@@ -1,23 +1,20 @@
 from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from langchain.llms import LlamaCpp
 from llama_cpp import Llama
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
-PATH='/Users/gianni/Progetti/LLM Models/wizard-vicuna-13b.Q3_K_S.gguf'
+PATH='/Users/gianni/Progetti/LLM Models/mistral-7b-v0.1.Q6_K.gguf'
 
 callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
 
-llm = Llama(model_path=PATH, verbose=True, temperature=0.75, max_tokens=2000, callback_manager=callback_manager)
+prompt = """
+Question: {question}?
+"""
 
-prompt = PromptTemplate(
-    input_variables=['input'],
-    template="""
-    ### Input:
-    {input}
-    """)
+llm = LlamaCpp(
+    model_path=PATH, callback_manager=callback_manager, temperature = 0.35, verbose=True
+)
 
-formatted_prompt = prompt.format(input="Question: A rap battle between Stephen Colbert and John Oliver")
-
-response = llm(formatted_prompt)
-
-print(response)
+print(llm("What is the date of twin tower attack?"))
