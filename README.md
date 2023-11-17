@@ -9,7 +9,7 @@ Install this application:
 
 - [Visual Studio Code](https://code.visualstudio.com/download) (Optional)
 - [Python](https://www.python.org/downloads/)
-- Large Language Model (you can download your favoirite LLM, but if you don't don't know any LLM, i should you to try [that](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF).)
+- Large Language Model (you can download your favoirite LLM, but if you don't don't know any LLM, you could try [this](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF) one.)
 
 ### Mac OS
 Work in progress...
