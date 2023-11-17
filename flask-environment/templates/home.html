@@ -4,21 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style.css">
-    <title>Chatbot</title>
+    <link rel="icon" type="image/x-icon" href="../static/images/fav.ico">
+    <title>Botor</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Chatbot</h2>
-        </div>
+    <div class="title">Botor</div>
+    <div class="chatbot">
         <div class="chat-box" id="chatBox">
-            <!-- Chat messages will be displayed here -->
+            <div class="answer-side">
+                <span class="answer-text">Hi! My name is Botor and i will try to answer to all your question.</span>
+            </div>
         </div>
-        <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
+        <div class="form-container">
+            <input class="chat-input" type="text" id="userInput" name="userInput" placeholder="Insert here your questions...">
+            <button class="button" id="button-send" onclick="sendMessage()">Submit</button>
         </div>
     </div>
-    <script src="../static/script.js"></script>
+    <script>
+        function sendMessage() {
+            if(document.getElementById('userInput').value != "") {
+                generateResponse();
+            }
+        }
+            
+        function generateResponse() {
+            var button = document.getElementById('button-send');
+            button.disabled = true;
+
+            var input = document.getElementById('userInput').value;
+            document.getElementById('userInput').value = "";
+
+            var chatBox = document.getElementById("chatBox");
+            var userMessage = document.createElement("div");
+            var userText = document.createElement("span");
+            userText.innerHTML = input;
+            userMessage.className = "question-side";
+            userText.className = "question-text";
+            userMessage.appendChild(userText);
+            chatBox.appendChild(userMessage);
+            $.ajax({ 
+                url: '/process', 
+                type: 'POST', 
+                contentType: 'application/json', 
+                data: JSON.stringify({ 'value': input }), 
+                success: function(response) {
+                    button.disabled = false;
+                    var botMessage = document.createElement("div");
+                    var botText = document.createElement("span");
+                    botText.innerHTML = response.result;
+                    botMessage.className = "answer-side";
+                    botText.className = "answer-text";
+                    botMessage.appendChild(botText);
+                    chatBox.appendChild(botMessage);
+                }, 
+                error: function(error) {
+                    console.log(error); 
+                } 
+            }); 
+        }
+     </script>
 </body>
 </html>

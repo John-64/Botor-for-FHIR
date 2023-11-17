@@ -5,8 +5,11 @@ function sendMessage() {
     if (userInput.value.trim() !== "") {
         // User message
         var userMessage = document.createElement("div");
-        userMessage.className = "message user-message";
-        userMessage.innerHTML = "<strong>You:</strong> " + userInput.value;
+        var userText = document.createElement("span");
+        userMessage.className = "question-side";
+        userText.className = "question-text";
+        userText.innerHTML = userInput.value;
+        userMessage.appendChild(userText);
         chatBox.appendChild(userMessage);
 
         // Bot response (you can customize this part)

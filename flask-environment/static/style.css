@@ -1,50 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+
 body {
     font-family: Arial, sans-serif;
+    width: 100%;
+    min-height: 20rem;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #222327;
 }
 
-.chat-container {
-    max-width: 400px;
-    margin: 50px auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
+.chatbot {
+    width: 80%;
+    padding: 0.5rem 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: solid #4CAF50 3px;
+    border-radius: 10px 10px 10px 10px;
 }
 
-.chat-header {
+.title {
     background-color: #4CAF50;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
     color: white;
     padding: 10px;
+    border-radius: 10px 10px 0 0;
+    padding: 0.5rem 1.5rem;
+    margin-top: 2rem;
     text-align: center;
 }
 
-.chat-box {
-    padding: 10px;
-    max-height: 300px;
-    overflow-y: scroll;
+.form-container {
+    width: 90%;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+    grid-template-columns: 85% 10%;
 }
 
 .chat-input {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     padding: 10px;
-    background-color: #fff;
+    border-radius: 5px 5px 5px 5px;
+    border: solid white 2px;
+    color: white;
+    outline: none;
+    background-color: #ffffff19;
 }
 
-input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 5px;
-}
-
-button {
+.button {
+    width: 100%;
     padding: 8px;
     background-color: #4CAF50;
+    text-transform: uppercase;
+    font-weight: bold;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+}
+
+.chat-box {
+    width: 100%;
+    max-height: 20rem;
+    overflow-y: auto;
+    min-height: 5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Hidding the scroll bar keeping the scoll */
+
+.chat-box::-webkit-scrollbar {
+    display: none;
+}
+  
+.chat-box {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.answer-side {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.answer-text {
+    max-width: 75%;
+    padding: 1.2rem 1rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 15px 15px 15px 15px;
+    margin: 0.5rem 1rem;
+}
+
+.question-side {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.question-text {
+    max-width: 75%;
+    padding: 1.2rem 1rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #335634;
+    border-radius: 15px 15px 15px 15px;
+    margin: 0.5rem 1rem;
 }
