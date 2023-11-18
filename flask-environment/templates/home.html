@@ -16,8 +16,8 @@
                 <span class="answer-text">Hi! My name is Botor and i will try to answer to all your question.</span>
             </div>
         </div>
-        <div class="form-container">
-            <input class="chat-input" type="text" id="userInput" name="userInput" placeholder="Insert here your questions...">
+        <div class="input-container">
+            <input class="chat-input" type="text" id="userInput" name="userInput" placeholder="Insert here your question">
             <button class="button" id="button-send" onclick="sendMessage()">Submit</button>
         </div>
     </div>
@@ -43,6 +43,34 @@
             userText.className = "question-text";
             userMessage.appendChild(userText);
             chatBox.appendChild(userMessage);
+            chatBox = document.getElementById("chatBox");
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+            chatBox.style.overflowY = "auto"
+
+            var botMessage = document.createElement("div");
+            var botText = document.createElement("span");
+            var loadingContainer = document.createElement("div");
+            var loading = document.createElement("div");
+            var spinner = document.createElement("div");
+
+            setTimeout(function() {
+                loadingContainer.className = "loading-container";
+                loading.className = "loading";
+                loading.innerHTML = "O";
+                spinner.className = "spinner";
+                loadingContainer.appendChild(loading);
+                loading.appendChild(spinner);
+
+                botMessage.className = "answer-side";
+                botText.className = "answer-text";
+
+                botMessage.appendChild(loadingContainer);
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                chatBox.style.overflowY = "auto"
+            }, 1000);
+
             $.ajax({ 
                 url: '/process', 
                 type: 'POST', 
@@ -50,13 +78,11 @@
                 data: JSON.stringify({ 'value': input }), 
                 success: function(response) {
                     button.disabled = false;
-                    var botMessage = document.createElement("div");
-                    var botText = document.createElement("span");
                     botText.innerHTML = response.result;
-                    botMessage.className = "answer-side";
-                    botText.className = "answer-text";
+                    botMessage.removeChild(loadingContainer);
                     botMessage.appendChild(botText);
-                    chatBox.appendChild(botMessage);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                    chatBox.style.overflowY = "auto"
                 }, 
                 error: function(error) {
                     console.log(error); 

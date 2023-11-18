@@ -6,12 +6,11 @@ body {
     min-height: 20rem;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #222327;
+    background-color: #2d2f32;
 }
 
 .chatbot {
@@ -19,9 +18,9 @@ body {
     padding: 0.5rem 0 0 0;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     border: solid #4CAF50 3px;
+    background-color: #222327;
     border-radius: 10px 10px 10px 10px;
 }
 
@@ -33,17 +32,18 @@ body {
     color: white;
     padding: 10px;
     border-radius: 10px 10px 0 0;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.5rem 0 1.5rem;
     margin-top: 2rem;
     text-align: center;
 }
 
-.form-container {
+.input-container {
     width: 90%;
     padding: 1rem;
     display: grid;
     gap: 1rem;
     justify-items: center;
+    gap: 2.5rem;
     grid-template-columns: 85% 10%;
 }
 
@@ -53,6 +53,7 @@ body {
     flex-direction: column;
     padding: 10px;
     border-radius: 5px 5px 5px 5px;
+    font-size: 1rem;
     border: solid white 2px;
     color: white;
     outline: none;
@@ -63,6 +64,7 @@ body {
     width: 100%;
     padding: 8px;
     background-color: #4CAF50;
+    font-size: 1.15rem;
     text-transform: uppercase;
     font-weight: bold;
     color: white;
@@ -73,12 +75,13 @@ body {
 
 .chat-box {
     width: 100%;
-    max-height: 20rem;
+    max-height: 30rem;
     overflow-y: auto;
     min-height: 5rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    transition: scroll-top 1s ease-in-out;
 }
 
 /* Hidding the scroll bar keeping the scoll */
@@ -125,3 +128,41 @@ body {
     border-radius: 15px 15px 15px 15px;
     margin: 0.5rem 1rem;
 }
+
+/* SPINNER */
+.loading-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+  
+.loading {
+    max-width: 75%;
+    padding: 1.2rem 1rem;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0);
+    background-color: #4CAF50;
+    border-radius: 15px 15px 15px 15px;
+    margin: 0.5rem 1rem;
+    position: relative;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #FFFFFF; /* Colore della rotellina */
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite; /* Animazione di rotazione */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+  
