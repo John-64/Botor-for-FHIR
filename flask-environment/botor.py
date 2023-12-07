@@ -19,10 +19,12 @@ def generate_query(question):
 
     # Prompt for OpenAI
     messages = [
-        {"role": "system", "content": 'Follow this form for build the query: "https://hapi.fhir.org/baseR4/replace-with-information"'
+        {"role": "system", "content": "Follow this form for build the query: 'https://hapi.fhir.org/baseR4/replace-with-information'. Please, study it!"
         },
         {"role": "user", "content": question},
-        {"role": "system", "content": 'Now study the request and give me just the query, without other symbols or explaination (that because i will save it in a variabile). Replace the information you want to add in "replace-with-information". If you are not able, return "It is not possible to fulfill your request, please try again with a more specific question."'
+        {"role": "system", "content": 'Generate a query without additional information, format or ordering. Provide only the requested query, and refrain from adding any other details, explanations, or personal opinions. Follow the request strictly. Replace the information you want to add with "replace-with-information". If you are unable to follow these instructions, return "It is not possible to fulfill your request. Please try again with a more specific question." '
+        },
+        {"role": "system", "content": 'If the user want more than 1 operation per time, return "Please, search for one piece of information at a time."'
         },
     ]
 
@@ -35,7 +37,7 @@ def generate_query(question):
     )
 
     query = response.choices[0].message.content
-
+    print(query)
     return query
 
 # This function will help me to understand if i can print the chart or text
@@ -73,7 +75,7 @@ def process():
     print("This is the query created by OpenAI: " + query) ## Just testing
 
     # Check if the user have asked something different from the chatbot operating field
-    if query != "It is not possible to fulfill your request, please try again with a more specific question.":
+    if query != "It is not possible to fulfill your request. Please try again with a more specific question." and query !="Please, search for one piece of information at a time.":
         # Server resource fetching
         json_answer = requests.get(query)
 
@@ -104,7 +106,7 @@ def process():
 
             # Setting up the LLM
             model = Llama(model_path = model_path,
-                        n_ctx = 2048,          
+                        n_ctx = 4096,          
                         n_gpu_layers = 1,       
                         use_mlock = True
                     )   
