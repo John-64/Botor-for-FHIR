@@ -12,6 +12,8 @@ Install this application:
 - Large Language Model (you can download your favoirite LLM, but if you don't don't know any LLM, you could try [this](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF) one.)
 
 Run the terminal:
+Edit the config.json file and then run the terminal:
+
 - docker build -t botor .
 - docker run --name botor -p 8080:5000 -d botor
 
