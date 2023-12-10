@@ -8,8 +8,12 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 Install this application:
 
 - [Visual Studio Code](https://code.visualstudio.com/download) (Optional)
-- [Python](https://www.python.org/downloads/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - Large Language Model (you can download your favoirite LLM, but if you don't don't know any LLM, you could try [this](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF) one.)
+
+Run the terminal:
+- docker build -t botor .
+- docker run --name botor -p 8080:5000 -d botor
 
 ### Mac OS
 Work in progress...
