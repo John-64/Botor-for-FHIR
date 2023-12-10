@@ -4,12 +4,15 @@ import json
 from openai import OpenAI
 from llama_cpp import Llama
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, template_folder='./flask-environment/templates', static_folder='./flask-environment/static')
 
 # Defining a function for extract the main information from a question made in natural language and return a FHIR query
 def generate_query(question):
-    # Insert here you API key
-    API_KEY = "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"
+    with open("config.json", "r") as config:
+                config = json.load(config)
+
+    # Change the key in the "config.json" file 
+    API_KEY = config["api_key"]
 
     # Check out all the models here: https://platform.openai.com/docs/models/overview
     GPT_MODEL = "gpt-3.5-turbo-1106"
@@ -61,12 +64,8 @@ def check_json_fields(json_data):
         print(f"Error during the JSON parsing: {e}")
         return False
 
-@app.route('/')
-def home():
-    return flask.render_template('home.html')
-
 @app.route('/process', methods=['POST']) 
-def process():
+def process():  
     # Taking the question from the user
     data = flask.request.get_json()
     question = data['value']
@@ -101,15 +100,21 @@ def process():
 
             return flask.jsonify(result="none", graph=array)
         else:
-            # Chagne with your desired model path 
-            model_path='/Users/gianni/Progetti/LLM Models/mistral-7b-instruct-v0.1.Q4_K_M.gguf'
+            with open("config.json", "r") as config:
+                config = json.load(config)
 
+            # Change the path of your model in the "config.json" file 
+            model_path = config["model_path"]
+            
             # Setting up the LLM
-            model = Llama(model_path = model_path,
-                        n_ctx = 4096,          
-                        n_gpu_layers = 1,       
-                        use_mlock = True
-                    )   
+            model = Llama(
+                model_path = model_path,
+                n_ctx = 4096,          
+                n_gpu_layers = 1,       
+                use_mlock = True,
+                f16_kv=True, #Post
+                n_batch=1024 #Post
+            )   
             
             # Variable containing the textual JSON for greater readability
             json_text = json_answer.text
@@ -135,7 +140,11 @@ def process():
     else:
         return flask.jsonify(result=query, graph="none")
     
+@app.route('/')
+def home():
+    return flask.render_template('home.html')
+    
 if __name__ == '__main__':
     app.debug = True
     # You can change the port as you prefer
-    app.run(host='0.0.0.0', port=9000, threaded=True)
+    app.run(host='0.0.0.0', threaded=True, debug=True)
