@@ -1,4 +1,4 @@
 {
-    "model_path": "INSERT_HERE_THE_PATH_OF_YOUR_MODEL",
-    "api_key": "INSERT_HERE_YOUR_KEY"
+    "model_path": "/Users/gianni/Progetti/LLM Models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+    "api_key": "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"
 }

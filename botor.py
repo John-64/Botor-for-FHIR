@@ -6,13 +6,18 @@ from llama_cpp import Llama
 
 app = flask.Flask(__name__, template_folder='./flask-environment/templates', static_folder='./flask-environment/static')
 
-# Defining a function for extract the main information from a question made in natural language and return a FHIR query
-def generate_query(question):
-    with open("config.json", "r") as config:
-                config = json.load(config)
-
+with open("./config.json", "r") as c:
+    config = json.load(c)
     # Change the key in the "config.json" file 
     API_KEY = config["api_key"]
+    # Change the path of your model in the "config.json" file 
+    model_path = config["model_path"]
+
+print("--------->" + API_KEY)
+print("--------->" + model_path)
+
+# Defining a function for extract the main information from a question made in natural language and return a FHIR query
+def generate_query(question):
 
     # Check out all the models here: https://platform.openai.com/docs/models/overview
     GPT_MODEL = "gpt-3.5-turbo-1106"
@@ -100,20 +105,12 @@ def process():
 
             return flask.jsonify(result="none", graph=array)
         else:
-            with open("config.json", "r") as config:
-                config = json.load(config)
-
-            # Change the path of your model in the "config.json" file 
-            model_path = config["model_path"]
-            
             # Setting up the LLM
             model = Llama(
                 model_path = model_path,
                 n_ctx = 4096,          
                 n_gpu_layers = 1,       
-                use_mlock = True,
-                f16_kv=True, #Post
-                n_batch=1024 #Post
+                use_mlock = True
             )   
             
             # Variable containing the textual JSON for greater readability
@@ -147,4 +144,4 @@ def home():
 if __name__ == '__main__':
     app.debug = True
     # You can change the port as you prefer
-    app.run(host='0.0.0.0', threaded=True, debug=True)
+    app.run(host='0.0.0.0', threaded=True, debug=True, port=9000)
