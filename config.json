@@ -1,4 +1,4 @@
 {
-    "model_path": "PATH_TO_MODEL",
-    "api_key": "YOUR_API_KEY"
+    "model_path": "/Users/gianni/Progetti/LLM Models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",
+    "api_key": "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"
 }
