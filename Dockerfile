@@ -1,7 +1,7 @@
-FROM python:3.8
+FROM python:3.11.4-alpine3.18
 
-RUN apt-get update -y && \
-    apt-get install -y python3-pip python3-dev
+RUN apk update && \
+    apk add --no-cache python3 python3-dev py3-pip
 
 COPY . /app
 
