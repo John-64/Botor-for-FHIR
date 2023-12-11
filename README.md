@@ -7,6 +7,9 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 - MacBook with ARM64 CPU with at least 8GB RAM.
 
 ## Instruction 📖
+1. Download the .zip and extract it
+2. Open the terminal and go in the located folder
+3. 
 Install this application:
 
 - [Visual Studio Code](https://code.visualstudio.com/download) (Optional)
