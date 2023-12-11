@@ -13,9 +13,6 @@ with open("./config.json", "r") as c:
     # Change the path of your model in the "config.json" file 
     model_path = config["model_path"]
 
-print("--------->" + API_KEY)
-print("--------->" + model_path)
-
 # Defining a function for extract the main information from a question made in natural language and return a FHIR query
 def generate_query(question):
 
