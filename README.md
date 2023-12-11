@@ -22,7 +22,7 @@ You can now verify successful installation by going to the Docker desktop app an
 - Run this command to see the stats (like cpu/ram used) of your container: docker stats botor
 
 ## Demo 🎥
-![gif](https://github.com/John-64/Botor/assets/102854987/e2b60fab-e7f7-430c-8bb7-614282fe8a50)
+![til](https://github.com/John-64/Botor/assets/102854987/e2b60fab-e7f7-430c-8bb7-614282fe8a50)
 Here the operation executed:
 - Provide me the information of patient 30163
 - Provide me the observation of patient 30163 with code 8310-5 "Body temperature"
