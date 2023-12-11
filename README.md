@@ -9,7 +9,7 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 1. Start the Docker application
 2. Download the project and extract it
 3. Put the model.gguf into the "model" folder, inside the Botor project
-4. Edit the config.JSON with your API Key and the name of your LLM
+4. Edit the config.JSON with your API Key and the name of your LLM.gguf
 5. Open the terminal and go in the located project folder
 6. Then run this two commands: 
   - docker build -t botor .
