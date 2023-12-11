@@ -24,7 +24,7 @@ You can now verify successful installation by going to the Docker desktop app an
 ## Demo 🎥
 ![gif](./model/Botor.gif)
 
-Here the operation executed:
+Here are the operations performed:
 - Provide me the information of patient 30163
 - Provide me the observation of patient 30163 with code 8310-5 "Body temperature"
 - Provide me the observation of patient 30163 with code 3141-9 "Body weight Measured"
