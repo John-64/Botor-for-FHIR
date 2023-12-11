@@ -17,15 +17,5 @@ Edit the config.json file and then run the terminal:
 - docker build -t botor .
 - docker run --name botor -p 8080:5000 -d botor
 
-### Mac OS
-Work in progress...
-
-### Windows
-Work in progress...
-
-### Linux
-Work in progress...
-
-
 ### Curiosity 🧐
 The name "Botor" is the merge of "Bot" with the "Doctor".
