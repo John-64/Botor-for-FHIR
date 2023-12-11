@@ -17,6 +17,10 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 
 Now you can check if everything is ok going to the docker desktop app and check the images and the container. If everything is ok the contiainer have as status "Running" and we can use the Botor app reaching the showed in the Port(s) section (for example http://localhost:9000).
 
+### Usefull commands 🛠️
+- Run this command if you want to know what are the images avaible: docker images
+- Run this command to see the stats (like cpu/ram used) of your container: docker stats botor
+
 ## Demo 🎥
 Provide me the information of patient 30163
   
