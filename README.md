@@ -6,7 +6,7 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 - Download the project Zip and extract it;
 - Download the LLM of your choice (check that it is compatible with Llama).
 
-## Instruction 
+## Instruction 📖
 1. Start the Docker application
 2. Put the model.gguf into the "model" folder, inside the Botor project
 3. Edit the config.JSON with your API Key and the name of your LLM
@@ -15,6 +15,7 @@ There is a repository for my chat-bot project. The application, wrote in Python,
   - docker build -t botor .
   - docker run --ulimit memlock=-1:-1 -it -p 9000:5000 --name botor -d botor
 
+Now you can check if everything is ok going to the docker desktop app and check the images and the container. If everything is ok the contiainer have as status "Running" and we can use the Botor app reaching the localhost (localhost:9000 in this case).
     
 Install this application:
 
