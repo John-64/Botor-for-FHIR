@@ -2,16 +2,17 @@
 There is a repository for my chat-bot project. The application, wrote in Python, answer to a human question using the FHIR resources taked from a [HAPI FHIR Test Server](https://hapi.fhir.org/).
 
 ## Requirements 📝
-- [Docker](https://www.docker.com/products/docker-desktop/)
+- Install [Docker](https://www.docker.com/products/docker-desktop/);
+- Download the project Zip and extract it;
+- Download the LLM of your choice (check that it is compatible with Llama).
 
-## Instruction 📖
+## Instruction 
 1. Start the Docker application
-2. Download the .zip and extract it
-3. Edit the config.JSON with at least your API Key
-4. Open the terminal and go in the located folder
-5. Run this command: 
+2. Put the model.gguf into the "model" folder, inside the Botor project
+3. Edit the config.JSON with your API Key and the name of your LLM
+4. Open the terminal and go in the located project folder
+5. Then run this two commands: 
   - docker build -t botor .
-6. Then run this other command: 
   - docker run --ulimit memlock=-1:-1 -it -p 9000:5000 --name botor -d botor
 
     
