@@ -12,8 +12,10 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 2. Download the .zip and extract it
 3. Edit the config.JSON with at least your API Key
 4. Open the terminal and go in the located folder
-5. Run this command: docker build -t botor .
+5. Run this command: 
+  - docker build -t botor .
 6. Then run this other command: 
+  - docker run --ulimit memlock=-1:-1 -it -p 9000:5000 -d botor
 Install this application:
 
 - [Visual Studio Code](https://code.visualstudio.com/download) (Optional)
