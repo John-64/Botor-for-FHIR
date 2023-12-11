@@ -2,7 +2,9 @@
 There is a repository for my chat-bot project. The application, wrote in Python, answer to a human question using the FHIR resources taked from a [HAPI FHIR Test Server](https://hapi.fhir.org/).
 
 ## Requirements 📝
-- Machine with minimum 8GB of RAM
+**For the moment the application has only been tested on MacBooks with ARM64 M1 processor. In the future i will release the version that can be used with docker.**
+
+- MacBook with ARM64 CPU with at least 8GB RAM.
 
 ## Instruction 📖
 Install this application:
