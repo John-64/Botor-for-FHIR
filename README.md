@@ -15,7 +15,7 @@ There is a repository for my chat-bot project. The application, wrote in Python,
   - docker build -t botor .
   - docker run --ulimit memlock=-1:-1 -it -p 9000:5000 --name botor -d botor
 
-Now you can check if everything is ok going to the docker desktop app and check the images and the container. If everything is ok the contiainer have as status "Running" and we can use the Botor app reaching the localhost (localhost:9000 in this case).
+Now you can check if everything is ok going to the docker desktop app and check the images and the container. If everything is ok the contiainer have as status "Running" and we can use the Botor app reaching the showed in the Port(s) section (http://localhost:xxxx).
     
 Install this application:
 
