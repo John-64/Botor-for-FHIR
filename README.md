@@ -18,11 +18,11 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 Now you can check if everything is ok going to the docker desktop app and check the images and the container. If everything is ok the contiainer have as status "Running" and we can use the Botor app reaching the showed in the Port(s) section (for example http://localhost:9000).
 
 ## Demo 🎥
-* Provide me the information of patient 30163
+Provide me the information of patient 30163
   
-* Provide me the observation of patient 30163 with code 8310-5 "Body temperature"
+Provide me the observation of patient 30163 with code 8310-5 "Body temperature"
   
-* Provide me the observation of patient 30163 with code 3141-9 "Body weight Measured"
+Provide me the observation of patient 30163 with code 3141-9 "Body weight Measured"
 
 ### Curiosity 🧐
 The name "Botor" is the merge of "Bot" with the "Doctor".
