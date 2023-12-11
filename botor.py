@@ -13,10 +13,10 @@ with open("./config.json", "r") as c:
     API_KEY = config["api_key"]
 
     model_path = config["model_path"]
-    temperature = config["temperature"]
-    max_tokens = config["max_tokens"]
-    n_ctx = config["n_ctx"]
-    top_p = config["top_p"]
+    temperature = float(config["temperature"])
+    max_tokens = int(config["max_tokens"])
+    n_ctx = int(config["n_ctx"])
+    top_p = int(config["top_p"])
 
 # Defining a function for extract the main information from a question made in natural language and return a FHIR query
 def generate_query(question):
@@ -143,4 +143,4 @@ def home():
     
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0',  port=9000, threaded=True, debug=True)
+    app.run(host='0.0.0.0', threaded=True, debug=True)

@@ -1,8 +1,8 @@
 {
     "api_key": "OPENAI_KEY",
-    "model_path": "PATH_TO_MODEL",
+    "model_path": "model/SELECTED_MODEL.gguf",
     "temperature": "0.75",
-    "max_tokens": "4096",
-    "n_ctx": "512",
+    "max_tokens": "512",
+    "n_ctx": "4096",
     "top_p":"1"
 }
