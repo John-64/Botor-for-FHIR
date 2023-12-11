@@ -6,16 +6,20 @@ from llama_cpp import Llama
 
 app = flask.Flask(__name__, template_folder='./flask-environment/templates', static_folder='./flask-environment/static')
 
+# Extracting the settings from config.json
 with open("./config.json", "r") as c:
     config = json.load(c)
-    # Change the key in the "config.json" file 
+
     API_KEY = config["api_key"]
-    # Change the path of your model in the "config.json" file 
+
     model_path = config["model_path"]
+    temperature = config["temperature"]
+    max_tokens = config["max_tokens"]
+    n_ctx = config["n_ctx"]
+    top_p = config["top_p"]
 
 # Defining a function for extract the main information from a question made in natural language and return a FHIR query
 def generate_query(question):
-
     # Check out all the models here: https://platform.openai.com/docs/models/overview
     GPT_MODEL = "gpt-3.5-turbo-1106"
 
@@ -37,21 +41,21 @@ def generate_query(question):
     response = client.chat.completions.create(
         model=GPT_MODEL,
         messages=messages,
-        max_tokens=50,
+        max_tokens=100,
         temperature=0
     )
 
+    # Extract the answer
     query = response.choices[0].message.content
-    print(query)
     return query
 
-# This function will help me to understand if i can print the chart or text
+# Defining a function for understand if is possible to print the chart or the text
 def check_json_fields(json_data):
     try:
-        # Load the JSON
+        # Parsing the JSON
         data = json.loads(json_data)
 
-        # Check if "entry" is in to JSON
+        # Check if "entry" is in the JSON
         if 'entry' in data:
             for entry in data['entry']:
                 if 'resource' in entry and 'effectiveDateTime' in entry['resource'] and 'valueQuantity' in entry['resource']:
@@ -73,7 +77,6 @@ def process():
     question = data['value']
 
     query = generate_query(question)
-    print("This is the query created by OpenAI: " + query) ## Just testing
 
     # Check if the user have asked something different from the chatbot operating field
     if query != "It is not possible to fulfill your request. Please try again with a more specific question." and query !="Please, search for one piece of information at a time.":
@@ -102,13 +105,13 @@ def process():
 
             return flask.jsonify(result="none", graph=array)
         else:
-            # Setting up the LLM
-            model = Llama(
-                model_path = model_path,
-                n_ctx = 4096,          
-                n_gpu_layers = 1,       
-                use_mlock = True
-            )   
+            llm = Llama(
+                model_path=model_path,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                n_ctx=n_ctx,
+                top_p=top_p
+            )
             
             # Variable containing the textual JSON for greater readability
             json_text = json_answer.text
@@ -126,7 +129,7 @@ def process():
             [/INST]
             """
             # Generating the answer
-            output = model(prompt = prompt, max_tokens = 250, temperature = 0.5)
+            output = llm(prompt = prompt, max_tokens = 250, temperature = 0.5)
              # Variable containing the response for greater readability
             result = output['choices'][0]['text']
 
@@ -140,5 +143,4 @@ def home():
     
 if __name__ == '__main__':
     app.debug = True
-    # You can change the port as you prefer
-    app.run(host='0.0.0.0', threaded=True, debug=True, port=9000)
+    app.run(host='0.0.0.0',  port=9000, threaded=True, debug=True)
