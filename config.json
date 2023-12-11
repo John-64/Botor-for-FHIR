@@ -1,5 +1,5 @@
 {
-    "api_key": "OPENAI_TOKEN",
+    "api_key": "OPENAI_KEY",
     "model_path": "PATH_TO_MODEL",
     "temperature": "0.75",
     "max_tokens": "4096",
