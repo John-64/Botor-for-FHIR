@@ -1,7 +1,7 @@
 FROM python:3.11.4-alpine3.18
 
 RUN apk update && \
-    apk add --no-cache python3 python3-dev py3-pip
+    apk add --no-cache python3 python3-dev py3-pip build-base cmake
 
 COPY . /app
 
