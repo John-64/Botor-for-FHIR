@@ -15,7 +15,8 @@ There is a repository for my chat-bot project. The application, wrote in Python,
 5. Run this command: 
   - docker build -t botor .
 6. Then run this other command: 
-  - docker run --ulimit memlock=-1:-1 -it -p 9000:5000 -d botor
+  - docker run --ulimit memlock=-1:-1 -it -p 9000:5000 -d --name botor
+    
 Install this application:
 
 - [Visual Studio Code](https://code.visualstudio.com/download) (Optional)
